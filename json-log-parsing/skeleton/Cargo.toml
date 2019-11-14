@@ -1,0 +1,33 @@
+[package]
+name = "skeleton"
+version = "0.1.0"
+authors = ["Dean Karn <dean.karn@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[dev-dependencies]
+criterion = "0.3" # also see https://github.com/BurntSushi/critcmp for comparing benchmarks
+
+[[bench]]
+harness = false
+name = "bench"
+
+[[bin]]
+name = "skeleton"
+path = "src/bin/main.rs"
+
+[lib]
+name = "skeleton"
+path = "src/lib.rs"
+
+# good read - https://lifthrasiir.github.io/rustlog/why-is-a-rust-executable-large.html
+[profile.dev]
+codegen-units = 4
+
+[profile.release]
+codegen-units = 1
+debug = false
+lto = true
